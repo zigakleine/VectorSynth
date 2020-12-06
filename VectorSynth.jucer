@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="n4KxF5" name="VectorSynth" projectType="audioplug" jucerFormatVersion="1"
+              displaySplashScreen="1" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn">
+  <MAINGROUP id="oozp2d" name="VectorSynth">
+    <GROUP id="{275B3263-77DA-1DAE-51B0-13E758F07065}" name="AKWF_fmsynth">
+      <FILE id="kClLSR" name="AKWF_fmsynth_0001.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0001.wav"/>
+      <FILE id="wpYkWF" name="AKWF_fmsynth_0002.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0002.wav"/>
+      <FILE id="EJcya5" name="AKWF_fmsynth_0003.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0003.wav"/>
+      <FILE id="tJDZUO" name="AKWF_fmsynth_0004.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0004.wav"/>
+      <FILE id="AS46lp" name="AKWF_fmsynth_0005.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0005.wav"/>
+      <FILE id="u3m5iJ" name="AKWF_fmsynth_0006.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0006.wav"/>
+      <FILE id="xt8spV" name="AKWF_fmsynth_0007.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0007.wav"/>
+      <FILE id="VjxZ10" name="AKWF_fmsynth_0008.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0008.wav"/>
+      <FILE id="zgxTIF" name="AKWF_fmsynth_0009.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0009.wav"/>
+      <FILE id="pXvRcp" name="AKWF_fmsynth_0010.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0010.wav"/>
+      <FILE id="yFxecW" name="AKWF_fmsynth_0011.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0011.wav"/>
+      <FILE id="YGYnc3" name="AKWF_fmsynth_0012.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0012.wav"/>
+      <FILE id="GJ0hqO" name="AKWF_fmsynth_0013.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0013.wav"/>
+      <FILE id="bnauMX" name="AKWF_fmsynth_0014.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0014.wav"/>
+      <FILE id="c8Odvy" name="AKWF_fmsynth_0015.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0015.wav"/>
+      <FILE id="foMjOV" name="AKWF_fmsynth_0016.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0016.wav"/>
+      <FILE id="pv836H" name="AKWF_fmsynth_0017.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0017.wav"/>
+      <FILE id="yUIdb0" name="AKWF_fmsynth_0018.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0018.wav"/>
+      <FILE id="ksTHrc" name="AKWF_fmsynth_0019.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0019.wav"/>
+      <FILE id="TnU8jc" name="AKWF_fmsynth_0020.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0020.wav"/>
+      <FILE id="SyBWsS" name="AKWF_fmsynth_0021.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0021.wav"/>
+      <FILE id="zzJFNI" name="AKWF_fmsynth_0022.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0022.wav"/>
+      <FILE id="ci1kIU" name="AKWF_fmsynth_0023.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0023.wav"/>
+      <FILE id="vDI6l5" name="AKWF_fmsynth_0024.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0024.wav"/>
+      <FILE id="lacqAZ" name="AKWF_fmsynth_0025.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0025.wav"/>
+      <FILE id="WfbJVt" name="AKWF_fmsynth_0026.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0026.wav"/>
+      <FILE id="FNOIDS" name="AKWF_fmsynth_0027.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0027.wav"/>
+      <FILE id="ZVff37" name="AKWF_fmsynth_0028.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0028.wav"/>
+      <FILE id="sIV8Nl" name="AKWF_fmsynth_0029.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0029.wav"/>
+      <FILE id="Qa3wN5" name="AKWF_fmsynth_0030.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0030.wav"/>
+      <FILE id="zQf6Fp" name="AKWF_fmsynth_0031.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0031.wav"/>
+      <FILE id="NxBtHz" name="AKWF_fmsynth_0032.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0032.wav"/>
+      <FILE id="ix24xO" name="AKWF_fmsynth_0033.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0033.wav"/>
+      <FILE id="Qb1GES" name="AKWF_fmsynth_0034.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0034.wav"/>
+      <FILE id="eu0IAa" name="AKWF_fmsynth_0035.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0035.wav"/>
+      <FILE id="pH0Fsy" name="AKWF_fmsynth_0036.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0036.wav"/>
+      <FILE id="ZnsMSQ" name="AKWF_fmsynth_0037.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0037.wav"/>
+      <FILE id="HTlG2T" name="AKWF_fmsynth_0038.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0038.wav"/>
+      <FILE id="pQb9vO" name="AKWF_fmsynth_0039.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0039.wav"/>
+      <FILE id="W4dXYq" name="AKWF_fmsynth_0040.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0040.wav"/>
+      <FILE id="QoxhTZ" name="AKWF_fmsynth_0041.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0041.wav"/>
+      <FILE id="bK0WH1" name="AKWF_fmsynth_0042.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0042.wav"/>
+      <FILE id="xIad18" name="AKWF_fmsynth_0043.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0043.wav"/>
+      <FILE id="uthqrS" name="AKWF_fmsynth_0044.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0044.wav"/>
+      <FILE id="JePDcK" name="AKWF_fmsynth_0045.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0045.wav"/>
+      <FILE id="tA9XAJ" name="AKWF_fmsynth_0046.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0046.wav"/>
+      <FILE id="DCPfSP" name="AKWF_fmsynth_0047.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0047.wav"/>
+      <FILE id="Y5HTgo" name="AKWF_fmsynth_0048.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0048.wav"/>
+      <FILE id="VpDbtO" name="AKWF_fmsynth_0049.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0049.wav"/>
+      <FILE id="bshJuA" name="AKWF_fmsynth_0050.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0050.wav"/>
+      <FILE id="UuE8cB" name="AKWF_fmsynth_0051.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0051.wav"/>
+      <FILE id="S7U3v3" name="AKWF_fmsynth_0052.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0052.wav"/>
+      <FILE id="bgPQ20" name="AKWF_fmsynth_0053.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0053.wav"/>
+      <FILE id="jWoNiR" name="AKWF_fmsynth_0054.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0054.wav"/>
+      <FILE id="LyJoKb" name="AKWF_fmsynth_0055.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0055.wav"/>
+      <FILE id="Ahi9jo" name="AKWF_fmsynth_0056.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0056.wav"/>
+      <FILE id="aC5S9I" name="AKWF_fmsynth_0057.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0057.wav"/>
+      <FILE id="WVqiCJ" name="AKWF_fmsynth_0058.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0058.wav"/>
+      <FILE id="wpHjJj" name="AKWF_fmsynth_0059.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0059.wav"/>
+      <FILE id="xNlCte" name="AKWF_fmsynth_0060.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0060.wav"/>
+      <FILE id="cgnWGo" name="AKWF_fmsynth_0061.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0061.wav"/>
+      <FILE id="wcFVYx" name="AKWF_fmsynth_0062.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0062.wav"/>
+      <FILE id="HmL6Fo" name="AKWF_fmsynth_0063.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0063.wav"/>
+      <FILE id="FILWCl" name="AKWF_fmsynth_0064.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0064.wav"/>
+      <FILE id="YYhnXe" name="AKWF_fmsynth_0065.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0065.wav"/>
+      <FILE id="qGxM0J" name="AKWF_fmsynth_0066.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0066.wav"/>
+      <FILE id="ASf5FZ" name="AKWF_fmsynth_0067.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0067.wav"/>
+      <FILE id="oAqsLA" name="AKWF_fmsynth_0068.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0068.wav"/>
+      <FILE id="BfB4Je" name="AKWF_fmsynth_0069.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0069.wav"/>
+      <FILE id="clg1rh" name="AKWF_fmsynth_0070.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0070.wav"/>
+      <FILE id="VVqQn8" name="AKWF_fmsynth_0071.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0071.wav"/>
+      <FILE id="wzheyb" name="AKWF_fmsynth_0072.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0072.wav"/>
+      <FILE id="bYE8R1" name="AKWF_fmsynth_0073.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0073.wav"/>
+      <FILE id="Mc4KoO" name="AKWF_fmsynth_0074.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0074.wav"/>
+      <FILE id="d1ayYY" name="AKWF_fmsynth_0075.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0075.wav"/>
+      <FILE id="oBsH1R" name="AKWF_fmsynth_0076.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0076.wav"/>
+      <FILE id="EC2Uaq" name="AKWF_fmsynth_0077.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0077.wav"/>
+      <FILE id="FuXwQd" name="AKWF_fmsynth_0078.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0078.wav"/>
+      <FILE id="OkmYdr" name="AKWF_fmsynth_0079.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0079.wav"/>
+      <FILE id="bf6Owl" name="AKWF_fmsynth_0080.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0080.wav"/>
+      <FILE id="NzTLNJ" name="AKWF_fmsynth_0081.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0081.wav"/>
+      <FILE id="WTKbrZ" name="AKWF_fmsynth_0082.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0082.wav"/>
+      <FILE id="cQySNo" name="AKWF_fmsynth_0083.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0083.wav"/>
+      <FILE id="cy6iIm" name="AKWF_fmsynth_0084.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0084.wav"/>
+      <FILE id="j6nunt" name="AKWF_fmsynth_0085.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0085.wav"/>
+      <FILE id="fpCoZf" name="AKWF_fmsynth_0086.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0086.wav"/>
+      <FILE id="mtR2UI" name="AKWF_fmsynth_0087.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0087.wav"/>
+      <FILE id="VFj5nt" name="AKWF_fmsynth_0088.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0088.wav"/>
+      <FILE id="zlmsPC" name="AKWF_fmsynth_0089.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0089.wav"/>
+      <FILE id="chATKA" name="AKWF_fmsynth_0090.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0090.wav"/>
+      <FILE id="pTD2EA" name="AKWF_fmsynth_0091.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0091.wav"/>
+      <FILE id="Lp6GzW" name="AKWF_fmsynth_0092.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0092.wav"/>
+      <FILE id="QvtURQ" name="AKWF_fmsynth_0093.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0093.wav"/>
+      <FILE id="FrX1ui" name="AKWF_fmsynth_0094.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0094.wav"/>
+      <FILE id="PXeiug" name="AKWF_fmsynth_0095.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0095.wav"/>
+      <FILE id="bRGYxy" name="AKWF_fmsynth_0096.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0096.wav"/>
+      <FILE id="GwyzJk" name="AKWF_fmsynth_0097.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0097.wav"/>
+      <FILE id="F9Ky77" name="AKWF_fmsynth_0098.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0098.wav"/>
+      <FILE id="HgLsMb" name="AKWF_fmsynth_0099.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0099.wav"/>
+      <FILE id="Zj0Vx2" name="AKWF_fmsynth_0100.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0100.wav"/>
+      <FILE id="zvksp2" name="AKWF_fmsynth_0101.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0101.wav"/>
+      <FILE id="xBMwW3" name="AKWF_fmsynth_0102.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0102.wav"/>
+      <FILE id="NPmZHv" name="AKWF_fmsynth_0103.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0103.wav"/>
+      <FILE id="zutNbv" name="AKWF_fmsynth_0104.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0104.wav"/>
+      <FILE id="riDxSz" name="AKWF_fmsynth_0105.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0105.wav"/>
+      <FILE id="dob0zI" name="AKWF_fmsynth_0106.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0106.wav"/>
+      <FILE id="whXl2N" name="AKWF_fmsynth_0107.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0107.wav"/>
+      <FILE id="Zc3aeU" name="AKWF_fmsynth_0108.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0108.wav"/>
+      <FILE id="sHVAa3" name="AKWF_fmsynth_0109.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0109.wav"/>
+      <FILE id="Gp0Kni" name="AKWF_fmsynth_0110.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0110.wav"/>
+      <FILE id="EX5uoZ" name="AKWF_fmsynth_0111.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0111.wav"/>
+      <FILE id="nKUPPe" name="AKWF_fmsynth_0112.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0112.wav"/>
+      <FILE id="wOaWUY" name="AKWF_fmsynth_0113.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0113.wav"/>
+      <FILE id="H8tqZv" name="AKWF_fmsynth_0114.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0114.wav"/>
+      <FILE id="mHagPv" name="AKWF_fmsynth_0115.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0115.wav"/>
+      <FILE id="fZlmUp" name="AKWF_fmsynth_0116.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0116.wav"/>
+      <FILE id="EMPJ7F" name="AKWF_fmsynth_0117.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0117.wav"/>
+      <FILE id="x5K8hE" name="AKWF_fmsynth_0118.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0118.wav"/>
+      <FILE id="qZqgnt" name="AKWF_fmsynth_0119.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0119.wav"/>
+      <FILE id="GIFkP6" name="AKWF_fmsynth_0120.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0120.wav"/>
+      <FILE id="YKJ2rQ" name="AKWF_fmsynth_0121.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0121.wav"/>
+      <FILE id="Zl0Vez" name="AKWF_fmsynth_0122.wav" compile="0" resource="1"
+            file="Source/AKWF_fmsynth/AKWF_fmsynth_0122.wav"/>
+    </GROUP>
+    <GROUP id="{88C441FA-82F5-4177-C4E8-D71C5EFDCFC2}" name="Source">
+      <FILE id="kUEUfJ" name="SynthVoice.h" compile="0" resource="0" file="Source/SynthVoice.h"/>
+      <FILE id="knlmn2" name="SynthSound.h" compile="0" resource="0" file="Source/SynthSound.h"/>
+      <FILE id="eNGKiu" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="mPmkLb" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+      <FILE id="l9vkCt" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="R3ab6k" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
+  <EXPORTFORMATS>
+    <VS2019 targetFolder="Builds/VisualStudio2019">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="VectorSynth"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="VectorSynth"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_dsp" path="../../../../JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2019>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="0"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+  </MODULES>
+  <LIVE_SETTINGS>
+    <WINDOWS/>
+  </LIVE_SETTINGS>
+</JUCERPROJECT>
