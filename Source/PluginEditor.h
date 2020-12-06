@@ -24,12 +24,23 @@ public:
     void paint (juce::Graphics&) override;
     void resized() override;
 
+
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
-    TextButton mLoadButton { "Load" };
+    TextButton mLoadButton;
 
-    Slider attackSlider, decaySlider, sustainSlider, releaseSlider;
+    juce::Slider attackSlider, decaySlider, sustainSlider, releaseSlider;
+    juce::Label attackLabel, decayLabel, sustainLabel, releaseLabel;
+
+    std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> attackAttachment;
+    std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> decayAttachment;
+    std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> sustainAttachment;
+    std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> releaseAttachment;
+
+    juce::ComboBox waveSelector1, waveSelector2, waveSelector3, waveSelector4;
+    std::unique_ptr<AudioProcessorValueTreeState::ComboBoxAttachment> waveSelectorAttachment1, waveSelectorAttachment2, waveSelectorAttachment3,
+        waveSelectorAttachment4;
 
     VectorSynthAudioProcessor& processor;
 

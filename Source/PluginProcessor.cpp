@@ -19,9 +19,11 @@ VectorSynthAudioProcessor::VectorSynthAudioProcessor()
                       #endif
                        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
-                       )
+                       ), APVTS(*this, nullptr, "PARAMETERS", createParameters())
 #endif
 {
+
+    APVTS.state.addListener(this);
 
     synth.clearVoices();
 
@@ -33,18 +35,10 @@ VectorSynthAudioProcessor::VectorSynthAudioProcessor()
 
     synth.clearSounds();
     synth.addSound(new SynthSound());
-    if (SynthSound* currentSound = static_cast<SynthSound*>(synth.getSound(0).get())) {
-
-
-        ADSR::Parameters adsrParams;
-
-        adsrParams.release = 1.0f;
-        adsrParams.sustain = 0.7f;
-
-        currentSound->setAdsrParams(adsrParams);
-
-    }
-    this->loadFile();
+    updateWave(0, 0);
+    updateWave(0, 1);
+    updateWave(0, 2);
+    updateWave(0, 3);
 }
 
 VectorSynthAudioProcessor::~VectorSynthAudioProcessor()
@@ -176,7 +170,23 @@ void VectorSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, 
     // the samples and the outer loop is handling the channels.
     // Alternatively, you can process the samples with the channels
     // interleaved by keeping the same state.
+    if (shouldUpdate) {
+        updateADSR();
 
+        int index1 = APVTS.getRawParameterValue("WAVE1")->load();
+        updateWave(index1, 0);
+
+        int index2 = APVTS.getRawParameterValue("WAVE2")->load();
+        updateWave(index2, 1);
+
+        int index3 = APVTS.getRawParameterValue("WAVE3")->load();
+        updateWave(index3, 2);
+
+        int index4 = APVTS.getRawParameterValue("WAVE4")->load();
+        updateWave(index4, 3);
+
+        shouldUpdate = false;
+    }
 
     synth.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
 }
@@ -213,12 +223,62 @@ juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
     return new VectorSynthAudioProcessor();
 }
 
+void VectorSynthAudioProcessor::updateADSR() {
+    if (SynthSound* currentSound = static_cast<SynthSound*>(synth.getSound(0).get())) {
 
-void VectorSynthAudioProcessor::loadFile() {
- 
+        ADSR::Parameters adsrParams;
+
+        
+
+        adsrParams.attack = APVTS.getRawParameterValue("ATTACK")->load();
+        adsrParams.decay = APVTS.getRawParameterValue("DECAY")->load();
+        adsrParams.sustain = APVTS.getRawParameterValue("SUSTAIN")->load();
+        adsrParams.release = APVTS.getRawParameterValue("RELEASE")->load();
+
+
+        currentSound->setAdsrParams(adsrParams);
+
+    }
+}
+
+AudioProcessorValueTreeState::ParameterLayout VectorSynthAudioProcessor::createParameters()
+{
+    std::vector<std::unique_ptr<RangedAudioParameter>> parameters;
+
+    parameters.push_back(std::make_unique<AudioParameterFloat>("ATTACK", "Attack", 0.0f, 3.0f, 0.0f));
+    parameters.push_back(std::make_unique<AudioParameterFloat>("DECAY", "Decay", 0.0f, 3.0f, 0.0f));
+    parameters.push_back(std::make_unique<AudioParameterFloat>("SUSTAIN", "Sustain", 0.0f, 1.0f, 1.0f));
+    parameters.push_back(std::make_unique<AudioParameterFloat>("RELEASE", "Release", 0.0f, 3.0f, 0.0f));
+
+    parameters.push_back(std::make_unique<AudioParameterFloat>("WAVE1", "wave1", 0, BinaryData::namedResourceListSize, 0));
+    parameters.push_back(std::make_unique<AudioParameterFloat>("WAVE2", "wave2", 0, BinaryData::namedResourceListSize, 0));
+    parameters.push_back(std::make_unique<AudioParameterFloat>("WAVE3", "wave3", 0, BinaryData::namedResourceListSize, 0));
+    parameters.push_back(std::make_unique<AudioParameterFloat>("WAVE4", "wave4", 0, BinaryData::namedResourceListSize, 0));
+
+    return { parameters.begin(), parameters.end() };
+}
+
+void VectorSynthAudioProcessor::loadWavesIntoWaveSelector(juce::ComboBox* selector)
+{
+
+    for (int i = 0; i < BinaryData::namedResourceListSize; i++) {
+        int binaryDataSize;
+        const char* name = BinaryData::getNamedResource(BinaryData::namedResourceList[i], binaryDataSize);
+        selector->addItem(BinaryData::namedResourceList[i], i + 1);
+    }   
+
+}
+
+void VectorSynthAudioProcessor::valueTreePropertyChanged(ValueTree& treeWhosePropertyHasChanged, const Identifier& property)
+{
+    shouldUpdate = true;
+}
+
+void VectorSynthAudioProcessor::updateWave(int index, int waveNum) {
+
     int binaryDataSize = 0;
     
-    const char* name = BinaryData::getNamedResource(BinaryData::namedResourceList[waveIndex], binaryDataSize);
+    const char* name = BinaryData::getNamedResource(BinaryData::namedResourceList[index], binaryDataSize);
 
     MemoryInputStream inputStream(name, binaryDataSize, false);
 
@@ -239,16 +299,14 @@ void VectorSynthAudioProcessor::loadFile() {
     waveTable.clear();
 
     for (int smp = 0; smp < numSamples; smp++) {
-        DBG(waveFormReadPointer[smp]);
+        //DBG(waveFormReadPointer[smp]);
         waveTable.insert(smp, waveFormReadPointer[smp]);
     }
 
     if (SynthSound* currentSound = static_cast<SynthSound*>(synth.getSound(0).get())) {
         
-        currentSound->setWave(waveTable);
-        currentSound->setWaveSize(numSamples);
+        currentSound->setWave(waveTable, waveNum);
+        currentSound->setWaveSize(numSamples, waveNum);
 
     }
-
-    waveIndex++;
 }

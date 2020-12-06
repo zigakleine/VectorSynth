@@ -14,7 +14,7 @@
 //==============================================================================
 /**
 */
-class VectorSynthAudioProcessor : public juce::AudioProcessor
+class VectorSynthAudioProcessor : public juce::AudioProcessor, public ValueTree::Listener
 {
 public:
     //==============================================================================
@@ -54,7 +54,14 @@ public:
     void getStateInformation(juce::MemoryBlock& destData) override;
     void setStateInformation(const void* data, int sizeInBytes) override;
 
-    void loadFile();
+    void updateWave(int index, int waveNum);
+    void updateADSR();
+
+    AudioProcessorValueTreeState::ParameterLayout createParameters();
+    AudioProcessorValueTreeState& getAPVTS() { return APVTS; };
+
+
+    void loadWavesIntoWaveSelector(juce::ComboBox* selector);
 
 private:
     Synthesiser synth;
@@ -68,6 +75,11 @@ private:
     AudioFormatReader* reader{ nullptr };
 
 
+    AudioProcessorValueTreeState APVTS;
+    void valueTreePropertyChanged(ValueTree& treeWhosePropertyHasChanged, const Identifier &property) override;
+
+    std::atomic<bool> shouldUpdate{ false };
+ 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (VectorSynthAudioProcessor)
 };

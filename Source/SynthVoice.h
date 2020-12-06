@@ -53,24 +53,42 @@ public:
               
         if (SynthSound* playingSound = static_cast<SynthSound*> (getCurrentlyPlayingSound().get())) {
             
-            Array<float> wave = playingSound->getWave();
-            double waveSize = playingSound->getWaveSize();
+            Array<float> wave1= playingSound->getWave(0);
+            Array<float> wave2 = playingSound->getWave(1);
+            Array<float> wave3 = playingSound->getWave(2);
+            Array<float> wave4 = playingSound->getWave(3);
+
+            double waveSize1 = playingSound->getWaveSize(0);
+            double waveSize2 = playingSound->getWaveSize(1);
+            double waveSize3 = playingSound->getWaveSize(2);
+            double waveSize4 = playingSound->getWaveSize(3);
+
             ADSR::Parameters adsrParams = playingSound->getAdsrParams();
 
             adsr.setParameters(adsrParams);
                 
-            increment = noteFrequency * waveSize / this->getSampleRate();
+            increment1 = noteFrequency * waveSize1 / this->getSampleRate();
+            increment2 = noteFrequency * waveSize2 / this->getSampleRate();
+            increment3 = noteFrequency * waveSize3 / this->getSampleRate();
+            increment3 = noteFrequency * waveSize4 / this->getSampleRate();
 
             for (int smp = 0; smp < numSamples; smp++) {
 
                 noteAmplitude = adsr.getNextSample();
 
                 for (int ch = 0; ch < outputBuffer.getNumChannels(); ch++) {
-                    outputBuffer.addSample(ch, startSample, (wave[(int)phase] * noteAmplitude) * masterAmplitude);
+
+                    float currentSample = (((wave1[(int)phase1] + wave2[(int)phase2] + wave3[(int)phase3] + wave3[(int)phase4])
+                        * noteAmplitude) * masterAmplitude)/4.0;
+
+                    outputBuffer.addSample(ch, startSample, currentSample);
                 }
 
                 startSample++;
-                phase = fmod((phase + increment), waveSize);
+                phase1 = fmod((phase1 + increment1), waveSize1);
+                phase2 = fmod((phase2 + increment2), waveSize2);
+                phase3 = fmod((phase3 + increment3), waveSize3);
+                phase4 = fmod((phase4 + increment4), waveSize4);
 
                 if (noteAmplitude <= 0.002 && !this->isKeyDown()) {
                     clearCurrentNote();
@@ -92,8 +110,14 @@ private:
     double noteFrequency = 0;
     double noteAmplitude = 0;
     double masterAmplitude = 0.2;
-    double phase = 0;
-    double increment;
+    double phase1 = 0;
+    double phase2 = 0;
+    double phase3 = 0;
+    double phase4 = 0;
+    double increment1;
+    double increment2;
+    double increment3;
+    double increment4;
 
     ADSR adsr;
   
