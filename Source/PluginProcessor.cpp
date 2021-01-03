@@ -8,6 +8,7 @@
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include <string>
 
 //==============================================================================
 VectorSynthAudioProcessor::VectorSynthAudioProcessor()
@@ -35,10 +36,12 @@ VectorSynthAudioProcessor::VectorSynthAudioProcessor()
 
     synth.clearSounds();
     synth.addSound(new SynthSound());
-    updateWave(0, 0);
-    updateWave(0, 1);
-    updateWave(0, 2);
-    updateWave(0, 3);
+
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 3; j++) {
+            updateWave(0, 0, i, j, true);
+        }
+    }
 }
 
 VectorSynthAudioProcessor::~VectorSynthAudioProcessor()
@@ -171,21 +174,29 @@ void VectorSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, 
     // Alternatively, you can process the samples with the channels
     // interleaved by keeping the same state.
     if (shouldUpdate) {
-        updateADSR();
 
-        int index1 = APVTS.getRawParameterValue("WAVE1")->load();
-        updateWave(index1, 0);
 
-        int index2 = APVTS.getRawParameterValue("WAVE2")->load();
-        updateWave(index2, 1);
+        String oscNames[] = { "OSC1", "OSC2", "OSC3", "OSC4" };
+        String waveNums[] = { "1", "2", "3" };
 
-        int index3 = APVTS.getRawParameterValue("WAVE3")->load();
-        updateWave(index3, 2);
+        for (int i = 0; i < 4; i++) {
+            updateADSR(i);
 
-        int index4 = APVTS.getRawParameterValue("WAVE4")->load();
-        updateWave(index4, 3);
+            for (int j = 0; j < 3; j++) {
+                int waveNum = APVTS.getRawParameterValue((oscNames[i] + "WAVE" + waveNums[j]))->load();
+                int repeats = APVTS.getRawParameterValue((oscNames[i] + "REPEATS" + waveNums[j]))->load();
+
+                updateWave(waveNum, repeats, i, j, false);
+            }
+
+        }
+
+        float volumeX = APVTS.getRawParameterValue("VOLUMEX")->load();
+        float volumeY = APVTS.getRawParameterValue("VOLUMEY")->load();
+        updateVolume(volumeX, volumeY);
 
         shouldUpdate = false;
+      
     }
 
     synth.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
@@ -223,21 +234,31 @@ juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
     return new VectorSynthAudioProcessor();
 }
 
-void VectorSynthAudioProcessor::updateADSR() {
+void VectorSynthAudioProcessor::updateADSR(int index) {
     if (SynthSound* currentSound = static_cast<SynthSound*>(synth.getSound(0).get())) {
 
         ADSR::Parameters adsrParams;
 
-        
+        String oscNames[] = { "OSC1", "OSC2", "OSC3", "OSC4" };
 
-        adsrParams.attack = APVTS.getRawParameterValue("ATTACK")->load();
-        adsrParams.decay = APVTS.getRawParameterValue("DECAY")->load();
-        adsrParams.sustain = APVTS.getRawParameterValue("SUSTAIN")->load();
-        adsrParams.release = APVTS.getRawParameterValue("RELEASE")->load();
+        adsrParams.attack = APVTS.getRawParameterValue((oscNames[index] + "ATTACK"))->load();
+        adsrParams.decay = APVTS.getRawParameterValue((oscNames[index] + "DECAY"))->load();
+        adsrParams.sustain = APVTS.getRawParameterValue((oscNames[index] + "SUSTAIN"))->load();
+        adsrParams.release = APVTS.getRawParameterValue((oscNames[index] + "RELEASE"))->load();
 
 
-        currentSound->setAdsrParams(adsrParams);
+        currentSound->setAdsrParams(adsrParams, index);
 
+    }
+}
+
+void VectorSynthAudioProcessor::updateVolume(float volumeX, int volumeY)
+{
+    if (SynthSound* currentSound = static_cast<SynthSound*>(synth.getSound(0).get())) {
+    
+        currentSound->setVolumeX(volumeX);
+        currentSound->setVolumeY(volumeY);
+    
     }
 }
 
@@ -245,16 +266,29 @@ AudioProcessorValueTreeState::ParameterLayout VectorSynthAudioProcessor::createP
 {
     std::vector<std::unique_ptr<RangedAudioParameter>> parameters;
 
-    parameters.push_back(std::make_unique<AudioParameterFloat>("ATTACK", "Attack", 0.0f, 3.0f, 0.0f));
-    parameters.push_back(std::make_unique<AudioParameterFloat>("DECAY", "Decay", 0.0f, 3.0f, 0.0f));
-    parameters.push_back(std::make_unique<AudioParameterFloat>("SUSTAIN", "Sustain", 0.0f, 1.0f, 1.0f));
-    parameters.push_back(std::make_unique<AudioParameterFloat>("RELEASE", "Release", 0.0f, 3.0f, 0.0f));
+   
+        String oscNames[] = { "OSC1", "OSC2", "OSC3", "OSC4"};
+        String waveNums[] = { "1", "2", "3"};
 
-    parameters.push_back(std::make_unique<AudioParameterFloat>("WAVE1", "wave1", 0, BinaryData::namedResourceListSize, 0));
-    parameters.push_back(std::make_unique<AudioParameterFloat>("WAVE2", "wave2", 0, BinaryData::namedResourceListSize, 0));
-    parameters.push_back(std::make_unique<AudioParameterFloat>("WAVE3", "wave3", 0, BinaryData::namedResourceListSize, 0));
-    parameters.push_back(std::make_unique<AudioParameterFloat>("WAVE4", "wave4", 0, BinaryData::namedResourceListSize, 0));
+    for (int i = 0; i < 4; i++) {
+        parameters.push_back(std::make_unique<AudioParameterFloat>((oscNames[i] + "ATTACK"), (oscNames[i] + "ATTACK"), 0.0f, 3.0f, 0.0f));
+        parameters.push_back(std::make_unique<AudioParameterFloat>((oscNames[i] + "DECAY"),(oscNames[i] + "DECAY"), 0.0f, 3.0f, 0.0f));
+        parameters.push_back(std::make_unique<AudioParameterFloat>((oscNames[i] + "SUSTAIN"),(oscNames[i] + "SUSTAIN"),  0.0f, 1.0f, 1.0f));
+        parameters.push_back(std::make_unique<AudioParameterFloat>((oscNames[i] + "RELEASE"), (oscNames[i] + "RELEASE"), 0.0f, 3.0f, 0.0f));
 
+        
+
+        for (int j = 0; j < 3; j++) {
+            parameters.push_back(std::make_unique<AudioParameterFloat>((oscNames[i] + "WAVE" + waveNums[j]), (oscNames[i] + "WAVE" + waveNums[j]),  0, BinaryData::namedResourceListSize, 0));
+            parameters.push_back(std::make_unique<AudioParameterInt>((oscNames[i] + "REPEATS" + waveNums[j]), (oscNames[i] + "REPEATS" + waveNums[j]),  0, 80, 1));
+        }
+
+
+    }
+
+    parameters.push_back(std::make_unique<AudioParameterFloat>("VOLUMEX", "VOLUMEX", 0.0f, 1.0f, 0.5f));
+    parameters.push_back(std::make_unique<AudioParameterFloat>("VOLUMEY", "VOLUMEY", 0.0f, 1.0f, 0.5f));
+   
     return { parameters.begin(), parameters.end() };
 }
 
@@ -271,42 +305,58 @@ void VectorSynthAudioProcessor::loadWavesIntoWaveSelector(juce::ComboBox* select
 
 void VectorSynthAudioProcessor::valueTreePropertyChanged(ValueTree& treeWhosePropertyHasChanged, const Identifier& property)
 {
+    //DBG(property.toString());
     shouldUpdate = true;
 }
 
-void VectorSynthAudioProcessor::updateWave(int index, int waveNum) {
-
-    int binaryDataSize = 0;
-    
-    const char* name = BinaryData::getNamedResource(BinaryData::namedResourceList[index], binaryDataSize);
-
-    MemoryInputStream inputStream(name, binaryDataSize, false);
-
-    WavAudioFormat wavFormat;
-    reader = wavFormat.createReaderFor(&inputStream, true);
-
-    int numSamples = reader->lengthInSamples;
-
-    mWaveForm.setSize(2, numSamples);
-    reader->read(&mWaveForm, 0, numSamples, 0, true, true);
-    
-
-    DBG("hello");
-    const float* waveFormReadPointer = mWaveForm.getReadPointer(0);
-
-    int wtSize = numSamples;
-
-    waveTable.clear();
-
-    for (int smp = 0; smp < numSamples; smp++) {
-        //DBG(waveFormReadPointer[smp]);
-        waveTable.insert(smp, waveFormReadPointer[smp]);
-    }
+void VectorSynthAudioProcessor::updateWave(int waveNum, int repeats, int index1, int index2, bool firstTime) {
 
     if (SynthSound* currentSound = static_cast<SynthSound*>(synth.getSound(0).get())) {
-        
-        currentSound->setWave(waveTable, waveNum);
-        currentSound->setWaveSize(numSamples, waveNum);
+
+
+        currentSound->setWaveRepeats(repeats, index1, index2);
+
+        int currentWaveNum = -1;
+        if (!firstTime) {
+            currentWaveNum = currentSound->getWaveNum(index1, index2);
+        }
+ 
+        if (currentWaveNum != waveNum) {
+
+            int binaryDataSize = 0;
+
+            const char* name = BinaryData::getNamedResource(BinaryData::namedResourceList[waveNum], binaryDataSize);
+
+            MemoryInputStream inputStream(name, binaryDataSize, false);
+
+            WavAudioFormat wavFormat;
+            reader = wavFormat.createReaderFor(&inputStream, true);
+
+            int numSamples = reader->lengthInSamples;
+
+            mWaveForm.setSize(2, numSamples);
+            reader->read(&mWaveForm, 0, numSamples, 0, true, true);
+
+
+            //DBG("hello");
+            const float* waveFormReadPointer = mWaveForm.getReadPointer(0);
+
+            int wtSize = numSamples;
+
+            waveTable.clear();
+
+            for (int smp = 0; smp < numSamples; smp++) {
+                //DBG(waveFormReadPointer[smp]);
+                waveTable.insert(smp, waveFormReadPointer[smp]);
+            }
+
+
+            currentSound->setWave(waveTable, index1, index2);
+            currentSound->setWaveSize(numSamples, index1, index2);
+            currentSound->setWaveNum(waveNum, index1, index2);
+
+        }
+
 
     }
 }

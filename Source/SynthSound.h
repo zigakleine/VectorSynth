@@ -11,14 +11,19 @@
 #pragma once
 
 #include <JuceHeader.h>
+#include "OscillatorVoice.h"
+
 
 class SynthSound : public SynthesiserSound
 {
 
 public:
 
-    SynthSound(){
+    SynthSound() {
 
+
+        volumeX = 0.5f;
+        volumeY = 0.5f;
     }
 
 
@@ -32,90 +37,84 @@ public:
         return true;
     }
 
-    double getWaveSize(int index)  const noexcept
+    double getWaveSize(int index1, int index2)  const noexcept
     {
-        if (index == 0) {
-            return waveSize1;
-        }
-        else if (index == 1) {
-            return waveSize2;
-        }
-        else if (index == 2) {
-            return waveSize3;
-        }
-        else {
-            return waveSize4;
-        }
+        return oscillatorVoices[index1].getWaveSize(index2);
     }
 
-    void setWaveSize(double newWaveSize, int index) 
+    void setWaveSize(double newWaveSize, int index1, int index2)
     {
-        if (index == 0) {
-            waveSize1 = newWaveSize;
-        }
-        else if (index == 1) {
-            waveSize2 = newWaveSize;
-        }
-        else if (index == 2) {
-            waveSize3 = newWaveSize;
-        }
-        else {
-            waveSize4 = newWaveSize;
-        }
+        oscillatorVoices[index1].setWaveSize(newWaveSize, index2);
     }
 
-    Array<float> getWave(int index) const noexcept
+    int getWaveRepeats(int index1, int index2)  const noexcept
     {
-        if (index == 0) {
-            return wave1;
-        }
-        else if (index == 1) {
-            return wave2;
-        }
-        else if (index == 2) {
-            return wave3;
-        }
-        else {
-            return wave4;
-        }
+        return oscillatorVoices[index1].getWaveRepeats(index2);
     }
 
-    void setWave(Array<float> newWave, int index)
+    void setWaveRepeats(int newWaveRepeats, int index1, int index2)
     {
-        if (index == 0) {
-            wave1 = newWave;
-        }
-        else if (index == 1) {
-            wave2 = newWave;
-        }
-        else if (index == 2) {
-            wave3 = newWave;
-        }
-        else {
-            wave4 = newWave;
-        }
+        oscillatorVoices[index1].setWaveRepeats(newWaveRepeats, index2);
     }
 
-    ADSR::Parameters getAdsrParams() const noexcept
+    Array<float> getWave(int index1, int index2) const noexcept
     {
-        return adsrParams;
+        return oscillatorVoices[index1].getWave(index2);
     }
 
-    void setAdsrParams(ADSR::Parameters newAdsrParams)
+    void setWave(Array<float> newWave, int index1, int index2)
     {
-        adsrParams = newAdsrParams;
+        oscillatorVoices[index1].setWave(newWave, index2);
     }
+
+    ADSR::Parameters getAdsrParams(int index) const noexcept
+    {
+        return oscillatorVoices[index].getAdsrParams();
+    }
+
+    void setAdsrParams(ADSR::Parameters newAdsrParams, int index)
+    {
+        oscillatorVoices[index].setAdsrParams(newAdsrParams);
+    }
+
+
+    int getWaveNum(int index1, int index2)  const noexcept
+    {
+        return oscillatorVoices[index1].getWaveNum(index2);
+    }
+
+    void setWaveNum(int newWaveNum, int index1, int index2)
+    {
+        oscillatorVoices[index1].setWaveNum(newWaveNum, index2);
+    }
+
+    float getVolumeX() 
+    {
+        return volumeX;
+    }
+
+    float getVolumeY()
+    {
+        return volumeY;
+    }
+
+    void setVolumeX(float newVolumeX)
+    {
+        volumeX = newVolumeX;
+    }
+
+    void setVolumeY(float newVolumeY)
+    {
+        volumeY = newVolumeY;
+    }
+
 
 private:
     friend class SynthVoice;
-    Array<float> wave1;
-    Array<float> wave2;
-    Array<float> wave3;
-    Array<float> wave4;
-    double waveSize1;
-    double waveSize2;
-    double waveSize3;
-    double waveSize4;
-    ADSR::Parameters adsrParams;
+   
+    OscillatorVoice oscillatorVoices[4];
+
+    float volumeX;
+    float volumeY;
 
 };

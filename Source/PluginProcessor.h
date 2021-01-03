@@ -54,8 +54,9 @@ public:
     void getStateInformation(juce::MemoryBlock& destData) override;
     void setStateInformation(const void* data, int sizeInBytes) override;
 
-    void updateWave(int index, int waveNum);
-    void updateADSR();
+    void updateWave(int waveNum, int repeats, int index1, int index2, bool firstTime);
+    void updateADSR(int index);
+    void updateVolume(float volumeX, int volumeY);
 
     AudioProcessorValueTreeState::ParameterLayout createParameters();
     AudioProcessorValueTreeState& getAPVTS() { return APVTS; };

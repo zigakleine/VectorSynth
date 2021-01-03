@@ -12,6 +12,7 @@
 
 #include <JuceHeader.h>
 #include "SynthSound.h"
+#include "OscillatorVoice.h"
 
 class SynthVoice : public SynthesiserVoice
 {
@@ -19,6 +20,14 @@ public:
 
     SynthVoice() {
         this->setAdsrSampleRate(this->getSampleRate());
+
+        for (int i = 0; i < 4; i++) {
+            phases[i] = 0;
+            oscCycles[i] = 0;
+            currentWaveIndexes[i] = 0;
+        }
+
+
     }
     
     bool canPlaySound(SynthesiserSound* sound) override
@@ -29,13 +38,23 @@ public:
     void startNote(int midiNoteNumber, float velocity, SynthesiserSound* sound, int currentPitchWheelPosition) override
     {
         noteFrequency = MidiMessage::getMidiNoteInHertz(midiNoteNumber);
-        adsr.noteOn();
+        for (int i = 0; i < 4; i++) {
+            adsrs[i].noteOn();
+
+            phases[i] = 0;
+            oscCycles[i] = 0;
+            currentWaveIndexes[i] = 0;
+            
+        }
+
     }
 
     void stopNote(float velocity, bool allowTailOff) override
     {
         allowTailOff = true;
-        adsr.noteOff();
+        for (int i = 0; i < 4; i++) {
+            adsrs[i].noteOff();
+        }
     }
 
     void pitchWheelMoved(int newPitchWheelValue) override
@@ -53,44 +72,94 @@ public:
               
         if (SynthSound* playingSound = static_cast<SynthSound*> (getCurrentlyPlayingSound().get())) {
             
-            Array<float> wave1= playingSound->getWave(0);
-            Array<float> wave2 = playingSound->getWave(1);
-            Array<float> wave3 = playingSound->getWave(2);
-            Array<float> wave4 = playingSound->getWave(3);
+            Array<float> waves[4];
+            double waveSizes[4];
 
-            double waveSize1 = playingSound->getWaveSize(0);
-            double waveSize2 = playingSound->getWaveSize(1);
-            double waveSize3 = playingSound->getWaveSize(2);
-            double waveSize4 = playingSound->getWaveSize(3);
+            for (int i = 0; i < 4; i++) {
+                waves[i] = playingSound->getWave(i, currentWaveIndexes[i]);
+                waveSizes[i] = playingSound->getWaveSize(i, currentWaveIndexes[i]);
 
-            ADSR::Parameters adsrParams = playingSound->getAdsrParams();
+                increments[i] = noteFrequency * waveSizes[i] / this->getSampleRate();
+             
+                ADSR::Parameters adsrParams = playingSound->getAdsrParams(i);
+                adsrs[i].setParameters(adsrParams);
 
-            adsr.setParameters(adsrParams);
-                
-            increment1 = noteFrequency * waveSize1 / this->getSampleRate();
-            increment2 = noteFrequency * waveSize2 / this->getSampleRate();
-            increment3 = noteFrequency * waveSize3 / this->getSampleRate();
-            increment3 = noteFrequency * waveSize4 / this->getSampleRate();
 
+            }
+            
             for (int smp = 0; smp < numSamples; smp++) {
-
-                noteAmplitude = adsr.getNextSample();
 
                 for (int ch = 0; ch < outputBuffer.getNumChannels(); ch++) {
 
-                    float currentSample = (((wave1[(int)phase1] + wave2[(int)phase2] + wave3[(int)phase3] + wave3[(int)phase4])
-                        * noteAmplitude) * masterAmplitude)/4.0;
+                    float currentSample = 0;
+
+                    for (int i = 0; i < 4; i++) {
+                        //      1
+                        //  ----------
+                        //  |        |
+                        // 0|        |2
+                        //  |        |
+                        //  ----------
+                        //      3
+
+                        float currentOscVolume = -1.0f;
+
+                        if (i == 0) {
+                            currentOscVolume = 1.0f - playingSound->getVolumeX();
+                        }
+                        else if (i == 1) {
+                            currentOscVolume = 1.0f - playingSound->getVolumeY();
+                        }
+                        else if (i == 2) {
+                            currentOscVolume = playingSound->getVolumeX();
+                        }
+                        else {
+                            currentOscVolume = playingSound->getVolumeY();
+                        }
+
+                        noteAmplitudes[i] = adsrs[i].getNextSample();
+                        currentSample += ((waves[i][(int)phases[i]] * noteAmplitudes[i]) * currentOscVolume);
+
+                    }
+                        
+                     currentSample = (currentSample * masterAmplitude)/4.0;
 
                     outputBuffer.addSample(ch, startSample, currentSample);
                 }
 
                 startSample++;
-                phase1 = fmod((phase1 + increment1), waveSize1);
-                phase2 = fmod((phase2 + increment2), waveSize2);
-                phase3 = fmod((phase3 + increment3), waveSize3);
-                phase4 = fmod((phase4 + increment4), waveSize4);
 
-                if (noteAmplitude <= 0.002 && !this->isKeyDown()) {
+                int oscillatorsPlaying = 4;
+                for (int i = 0; i < 4; i++) {
+
+                    if (oscCycles[i] < maxOscCycles) {
+                        oscCycles[i] += (int)(phases[i] + increments[i]) / waveSizes[i];
+                    }
+
+                    int maxOscCycles = playingSound->getWaveRepeats(i, currentWaveIndexes[i]);
+                    if (maxOscCycles != -1) {
+                        if (oscCycles[i] >= maxOscCycles) {
+
+                            int newWaveIndex = (currentWaveIndexes[i] + 1) % 2;
+                            currentWaveIndexes[i] = newWaveIndex;
+                            oscCycles[i] = 0;
+                            waveSizes[i] = playingSound->getWaveSize(i, currentWaveIndexes[i]);
+                            increments[i] = noteFrequency * waveSizes[i] / this->getSampleRate();
+                            
+                        }
+            
+                    }
+      
+                    phases[i] = fmod((phases[i] + increments[i]), waveSizes[i]);
+       
+
+                    if (noteAmplitudes[i] <= 0.002 && !this->isKeyDown()) {
+                        oscillatorsPlaying -= 1;
+                    }
+                }
+                bool shouldClear = (oscillatorsPlaying == 0);
+
+                if (shouldClear) {
                     clearCurrentNote();
                     break;
                 }
@@ -101,7 +170,10 @@ public:
     }
 
     void setAdsrSampleRate(double sampleRate) {
-        adsr.setSampleRate(sampleRate);
+        for (int i = 0; i < 4; i++) {
+            adsrs[i].setSampleRate(sampleRate);
+        }
+
     }
 
     //=====================================================================================
@@ -109,21 +181,26 @@ private:
 
     double noteFrequency = 0;
     double noteAmplitude = 0;
-    double masterAmplitude = 0.2;
-    double phase1 = 0;
-    double phase2 = 0;
-    double phase3 = 0;
-    double phase4 = 0;
-    double increment1;
-    double increment2;
-    double increment3;
-    double increment4;
+    double masterAmplitude = 0.4;
 
-    ADSR adsr;
+    double phases[4];
+    double increments[4];
+
+    double noteAmplitudes[4];
+
+    int oscCycles[4];
+    int maxOscCycles = 100;
+
+    int currentWaveIndexes[4];
+
+    ADSR adsrs[4];
   
 };
 
 /*
+ //obsolete stuff:
+
+
 MidiBuffer::Iterator it(midiMessages);
 
 MidiMessage currentMessage;

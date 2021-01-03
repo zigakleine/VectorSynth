@@ -4,6 +4,14 @@
               displaySplashScreen="1" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn">
   <MAINGROUP id="oozp2d" name="VectorSynth">
     <GROUP id="{88C441FA-82F5-4177-C4E8-D71C5EFDCFC2}" name="Source">
+      <FILE id="YWcsJm" name="OscillatorVoice.h" compile="0" resource="0"
+            file="Source/OscillatorVoice.h"/>
+      <FILE id="Zj9qZY" name="XYSlider.cpp" compile="1" resource="0" file="Source/XYSlider.cpp"/>
+      <FILE id="rxlf03" name="XYSlider.h" compile="0" resource="0" file="Source/XYSlider.h"/>
+      <FILE id="nKoEFr" name="OscillatorVoiceGui.cpp" compile="1" resource="0"
+            file="Source/OscillatorVoiceGui.cpp"/>
+      <FILE id="wLvlsA" name="OscillatorVoiceGui.h" compile="0" resource="0"
+            file="Source/OscillatorVoiceGui.h"/>
       <GROUP id="{06E018BA-0A2A-8FDC-1765-BB5D4E572E6F}" name="AKWF">
         <FILE id="zeFCcX" name="AKWF_aguitar_0001.wav" compile="0" resource="1"
               file="Source/AKWF/AKWF_aguitar_0001.wav"/>
@@ -351,8 +359,6 @@
               file="Source/AKWF/AKWF_vgame_0008.wav"/>
         <FILE id="MSoIii" name="AKWF_vgame_0009.wav" compile="0" resource="1"
               file="Source/AKWF/AKWF_vgame_0009.wav"/>
-        <FILE id="T92UDF" name="AKWF_vgame_0010.wav" compile="0" resource="1"
-              file="Source/AKWF/AKWF_vgame_0010.wav"/>
       </GROUP>
       <FILE id="kUEUfJ" name="SynthVoice.h" compile="0" resource="0" file="Source/SynthVoice.h"/>
       <FILE id="knlmn2" name="SynthSound.h" compile="0" resource="0" file="Source/SynthSound.h"/>
